@@ -34,27 +34,19 @@ Os campos marcados com `*` são obrigatórios e validados na API. ✔️
 | UF                  | ⭐           | Unidade Federativa                        |
 | Regime Tributário   | ⭐           | Ex.: Simples Nacional, Lucro Presumido    |
 
+### 👤 Atributos da Pessoa Física
+| Campo               | Obrigatório    | Descrição                                               |
+| ------------------- | -------------- | ------------------------------------------------------- |
+| Nome                | ⭐              | Nome completo da pessoa                                 |
+| CPF                 | ⭐              | Cadastro de Pessoa Física                               |
+| Email               | ⭐              | Contato do usuário                                      |
+| Telefone            | ❌              | Número para contato                                     |
+| Inscrição Estadual  | ⭐ (se emissor) | Necessário apenas se for emissor de **NFe/NFCe**        |
+| Código do Município | ⭐              | Código IBGE do município                                |
+| Nome do Município   | ❌              | Nome legível do município                               |
+| UF                  | ⭐              | Unidade Federativa                                      |
+| Regime Tributário   | ⭐              | Ex.: MEI, Autônomo, Simples Nacional (quando aplicável) |
 
-
-  - Razão Social*
-  - Nome Fantasia
-  - CNPJ*
-  - Email*
-  - Inscrição Municipal / Se emissor de NFSe*
-  - Inscrição Estadual / Se emissor de NFe/NFCe*
-  - Codigo do Municipio*
-  - Nome do Município
-  - UF*
-  - Regime Tribtário*
 
     
-### Atributos da Pessoa Física
-  - Nome*
-  - CPF*
-  - Email*
-  - Telefone
-  - Inscrição Estadual / Se emissor de NFe/NFCe*
-  - Codigo do Municipio*
-  - Nome do Município
-  - UF*
-  - Regime Tribtário*
+## Continua...
