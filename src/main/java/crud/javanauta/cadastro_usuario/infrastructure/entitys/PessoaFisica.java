@@ -64,19 +64,6 @@ public class PessoaFisica{
     // Criar testes com base nesta classe, entendendo conceito de TDD.
     // Criar construtor de Pessoa Física completo, login e senha, com regras de obrigatoriedade,
 
-//    public PessoaFisica(String id, Usuario usuario, Municipio municipio, String nome, String email, String cpf, String telefone, InscricaoContribuinte inscricaoEstadual, RegimeTributario regimeTributario) {
-//        this.id = id;
-//        this.usuario = usuario;
-//        this.municipio = municipio;
-//        this.nome = nome;
-//        this.email = email;
-//        this.cpf = cpf;
-//        this.telefone = telefone;
-//        this.inscricaoEstadual = inscricaoEstadual;
-//        this.regimeTributario = regimeTributario;
-//    }
-
-
     /*
 
     Nome*
