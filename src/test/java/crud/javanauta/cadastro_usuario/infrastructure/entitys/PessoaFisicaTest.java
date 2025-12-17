@@ -23,7 +23,7 @@ public class PessoaFisicaTest{
                 "123",
                 "987654321",
                 inscricao,
-                RegimeTributario.REGIME_NORMAL);
+                RegimeTributario.SIMPLES_NACIONAL_MEI);
         assertNotNull(pf.getNome());
         assertNotNull(pf.getCpf());
         assertNotNull(pf.getEmail());
