@@ -1,35 +1,66 @@
 package crud.javanauta.cadastro_usuario.infrastructure.entitys;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class PessoaJuridica extends Usuario implements Conta{
+public class PessoaJuridica /*implements Conta*/{
 
-    private String cnpj;
+
 
 //    PessoaJuridica pj = new PessoaJuridica();
 //
 //    String email = pj.getEmail();
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private String id;
 
-    private String conta;
+    @OneToOne
+    private Usuario usuario;
 
-    private String agencia;
+    @ManyToOne
+    private Municipio municipio;
+
+    @Column(nullable = false)
+    private String razaoSocial;
+
+    private String nomeFantasia;
+
+    @Column(nullable = false, unique = true)
+    private String cnpj;
+
+    @Column(nullable = false)
+    private String email;
+
+     // Se habilitado NFSe | Transformar em Objeto
+    @Embedded
+    @AttributeOverrides(
+            @AttributeOverride(name = "codigo", column = @Column(name = "inscricao_municipal"))
+
+    )
+    private InscricaoContribuinte inscricaoMunicipal;
+
+    // Se habilitado NFe ou NFCe | Transformar em Objeto
+    // Quando não for usado para calcular usar String ao invés de Integer
+    @Embedded
+    @AttributeOverrides(
+            @AttributeOverride(name = "codigo", column = @Column(name = "inscricao_estadual"))
+    )
+
+    private InscricaoContribuinte inscricaoEstadual;
+
+
+    @Column(nullable = false)
+    private String regimeTributario;
+
+//    private String conta;
+//
+//    private String agencia;
 
     // Aqui pega os beneficios da interface Conta por default
 //    String beneficios = pj.getBeneficios();
-
-
-
 
 }

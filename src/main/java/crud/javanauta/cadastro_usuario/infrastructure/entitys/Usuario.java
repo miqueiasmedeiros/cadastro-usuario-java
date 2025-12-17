@@ -3,6 +3,8 @@ package crud.javanauta.cadastro_usuario.infrastructure.entitys;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 
 @Getter
 @Setter
@@ -10,24 +12,22 @@ import lombok.*;
 @NoArgsConstructor // Construtor sem argumentos
 @Builder
 //@Embeddable
-//@Entity // Jakarta a partir do java 17
+@Entity // Jakarta a partir do java 17
 public class Usuario {
     
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Integer id;
-    
-    @Column(name = "email", unique = true)
-    private String email;
-    
-    @Column(name = "name")
-    private String nome;
+    @Id
+    private String id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
    private String login;
 
-
+    @Column(nullable = false)
     private String senha;
 
+    public Usuario(String login, String senha){
+        this.id = UUID.randomUUID().toString();
+        this.login = login;
+        this.senha = senha;
+    }
 
 }
