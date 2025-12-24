@@ -11,6 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor // Gera um construtor completo com todos os atributos
 @NoArgsConstructor // Construtor sem argumentos
 @Builder
+@Table(name = "usuario")
 //@Embeddable
 @Entity // Jakarta a partir do java 17
 public class Usuario {
@@ -25,7 +26,7 @@ public class Usuario {
     private String senha;
 
     public Usuario(String login, String senha){
-        this.id = UUID.randomUUID().toString();
+
         this.login = login;
         this.senha = senha;
     }

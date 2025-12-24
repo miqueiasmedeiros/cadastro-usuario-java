@@ -50,12 +50,13 @@ public class PessoaFisica{
                         String senha,
                         String telefone,
                         InscricaoContribuinte inscricaoEstadual,
-                        RegimeTributario regimeTributario){
-        this.id = UUID.randomUUID().toString();
+                        RegimeTributario regimeTributario,
+                        Municipio municipio){
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
+        this.municipio = municipio;
         this.inscricaoEstadual = inscricaoEstadual;
         this.regimeTributario = regimeTributario;
         this.usuario = new Usuario(this.cpf, senha);

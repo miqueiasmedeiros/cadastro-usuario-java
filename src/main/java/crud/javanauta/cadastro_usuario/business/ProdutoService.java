@@ -10,11 +10,14 @@ public class ProdutoService {
     private final ProdutosRepository repository;
 
     public ProdutoService(ProdutosRepository repository){
+
         this.repository = repository;
     }
 
-    public void salvarProduto(Produto produto){
+    public Produto salvarProduto(Produto produto){
+
         repository.saveAndFlush(produto);
+        return produto;
     }
 
     public Produto buscarProdutosPorId(Integer id){
@@ -23,6 +26,7 @@ public class ProdutoService {
         );
     }
     public void deletarProdutoPorId(Integer id){
+
         repository.deleteById(id);
     }
 }
