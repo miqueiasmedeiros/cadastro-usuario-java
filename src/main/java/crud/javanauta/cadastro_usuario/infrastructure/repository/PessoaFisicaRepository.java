@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PessoaFisicaRepository extends JpaRepository<PessoaFisica, Integer> {
+public interface PessoaFisicaRepository extends JpaRepository<PessoaFisica, String> {
 
     Optional<PessoaFisica> findByEmail(String email);
 

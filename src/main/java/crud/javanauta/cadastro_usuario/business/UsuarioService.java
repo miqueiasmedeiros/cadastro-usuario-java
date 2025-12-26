@@ -2,6 +2,7 @@ package crud.javanauta.cadastro_usuario.business;
 
 import crud.javanauta.cadastro_usuario.infrastructure.entitys.PessoaFisica;
 import crud.javanauta.cadastro_usuario.infrastructure.entitys.Usuario;
+import crud.javanauta.cadastro_usuario.infrastructure.exceptions.UsuarioExceptions;
 import crud.javanauta.cadastro_usuario.infrastructure.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +25,19 @@ public class UsuarioService {
 
     public Usuario buscarUsuarioPorId(String id){
         return repository.findById(id).orElseThrow(
-                ()-> new RuntimeException("Usuário não Encontrado!")
+                ()-> new UsuarioExceptions("Usuário não Encontrado!")
         );
     }
 
     public void deletarUsuarioPorId(String id){
+        if (!repository.existsById(id)){
+            throw new UsuarioExceptions("Id do Usuário não encontrado!");
+        }
         repository.deleteById(id);
     }
 
     public Usuario atualizarUsuarioPorId(String id, Usuario usuario) {
-       Usuario usuarioEntity = repository.findById(id).orElseThrow(()-> new RuntimeException("Usuário não encontrado"));
+       Usuario usuarioEntity = repository.findById(id).orElseThrow(()-> new UsuarioExceptions("Usuário não encontrado"));
        Usuario usuarioAtualizado = Usuario.builder()
                .login(usuario.getLogin() != null ? usuario.getLogin():usuarioEntity.getLogin())
                .senha(usuario.getSenha()!=null ? usuario.getSenha():usuarioEntity.getSenha())
