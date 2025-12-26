@@ -14,6 +14,8 @@ O sistema implementa um **CRUD** completo (**Create, Read, Update, Delete**) par
 
 - 📦 Spring Data JPA
 
+- 🐳 Docker
+
 ### 🧾 Sobre o Projeto
 
 Este projeto tem como objetivo gerenciar cadastros de usuários, permitindo salvar, atualizar, consultar e remover registros de Pessoa Física e Pessoa Jurídica.
@@ -48,5 +50,50 @@ Os campos marcados com `*` são obrigatórios e validados na API. ✔️
 | Regime Tributário   | ⭐              | Ex.: MEI, Autônomo, Simples Nacional (quando aplicável) |
 
 
-    
-## Continua...
+
+## 🐳 Build e Publicação da Imagem Docker
+
+Este projeto utiliza **Docker** para empacotar e executar a aplicação Java de forma padronizada e portátil.
+
+### 🔹 Pré-requisitos
+- Docker instalado
+- Conta no [Docker Hub](https://hub.docker.com)
+- Projeto configurado e com `Dockerfile` na raiz
+
+---
+
+### 1️⃣ Build da imagem Docker
+
+Na raiz do projeto, execute o comando abaixo para gerar a imagem Docker:
+
+```bash
+sudo docker build -t cadastro-usuario:0.0.2-RELEASE .
+```
+### 2️⃣ Enviar a imagem para o DockerHub
+
+Faça login no Docker Hub pelo terminal:
+```bash
+sudo docker login
+```
+O padrão de nomenclatura exigido pelo Docker Hub é:
+
+```bash
+<usuario>/<repositorio>:<versao>
+```
+Exemplo:
+```bash
+sudo docker tag nome-arquivo:0.0.2-RELEASE seuUsuario/imagem-nome-arquivo:0.0.2-RELEASE
+```
+Após criar a tag, envie a imagem para o Docker Hub:
+```bash
+sudo docker push seu-usuario/imagem-nome-arquivo:0.0.2-RELEASE
+```
+Para executar a aplicação a partir da imagem publicada:
+```bash
+docker run -p 8080:8080 seu-usuario/imagem-nome-arquivo:0.0.2-RELEASE
+```
+Próximas melhorias no projeto...
+
+- Bug de CNPJ/CPF duplicados sem mensagem de erro sugestiva. 
+- Documentação Swagger
+

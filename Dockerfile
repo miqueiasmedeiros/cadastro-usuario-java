@@ -1,6 +1,28 @@
-FROM eclipse-temurin:21
+# -----------------------------
+# Etapa 1 — Build da aplicação
+# -----------------------------
+FROM eclipse-temurin:21-jdk AS build
+
 LABEL maintainer="miqueiascompany@gmail.com"
 WORKDIR /app
-COPY target/cadastro_usuario-0.0.1-SNAPSHOT.jar /app/cadastro-docker.jar
-ENTRYPOINT ["java", "-jar", "cadastro-docker.jar"]
+
+
+
+COPY .mvn/ .mvn
+COPY mvnw .
+COPY pom.xml .
+COPY src ./src
+
+# Baixa dependências e empacota
+RUN ./mvnw clean package
+
+#Etapa 2 - Runtime (JRE)
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+
+# Copia somente o JAR gerado no build
+COPY --from=build /app/target/*jar cadastro-docker.jar
+
 EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "cadastro-docker.jar"]
