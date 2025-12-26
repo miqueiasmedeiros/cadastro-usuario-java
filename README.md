@@ -92,6 +92,16 @@ Para executar a aplicação a partir da imagem publicada:
 ```bash
 docker run -p 8080:8080 seu-usuario/imagem-nome-arquivo:0.0.2-RELEASE
 ```
+### Como excutar a imagem deste projeto?
+
+1. Copiar a imagem docker para sua máquina:
+```bash
+docker pull miqueias360/imagem-cadastro-user:0.0.4-RELEASE
+```
+2. Executar o projeto:
+```bash
+docker run -p 8080:8080 miqueias360/imagem-cadastro-user:0.0.4-RELEASE
+```
 Próximas melhorias no projeto...
 
 - Bug de CNPJ/CPF duplicados sem mensagem de erro sugestiva. 
