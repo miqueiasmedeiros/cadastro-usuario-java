@@ -10,7 +10,7 @@ public interface PessoaFisicaRepository extends JpaRepository<PessoaFisica, Stri
 
     Optional<PessoaFisica> findByEmail(String email);
 
-    boolean existsByEmail(String email);
+    boolean existsByCpf(String cpf);
 
     @Transactional
     void deleteByEmail(String email);

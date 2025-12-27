@@ -2,6 +2,7 @@ package crud.javanauta.cadastro_usuario.business;
 
 import crud.javanauta.cadastro_usuario.infrastructure.entitys.PessoaFisica;
 import crud.javanauta.cadastro_usuario.infrastructure.entitys.PessoaJuridica;
+import crud.javanauta.cadastro_usuario.infrastructure.exceptions.CpfJaCadastradoException;
 import crud.javanauta.cadastro_usuario.infrastructure.exceptions.PessoaFisicaExceptions;
 import crud.javanauta.cadastro_usuario.infrastructure.repository.PessoaFisicaRepository;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class PessoaFisicaService {
     }
 
     public PessoaFisica salvarPessoaFisica(PessoaFisica pf){
+        if(repository.existsByCpf(pf.getCpf())){
+            throw new CpfJaCadastradoException("CPF já cadastrado no sistema");
+        }
         pf.setId(UUID.randomUUID().toString());
         repository.saveAndFlush(pf);
         return pf;
