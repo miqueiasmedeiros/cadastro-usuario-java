@@ -1,0 +1,4 @@
+INSERT INTO UF (ID, NOME) VALUES ('RJ', 'Rio de Janeiro');
+
+INSERT INTO MUNICIPIO (ID, NOME, UF_ID) VALUES ('1', 'Seropédica', 'RJ');
+
