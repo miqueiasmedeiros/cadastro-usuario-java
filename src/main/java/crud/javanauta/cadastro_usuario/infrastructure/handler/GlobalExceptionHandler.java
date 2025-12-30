@@ -1,7 +1,7 @@
 package crud.javanauta.cadastro_usuario.infrastructure.handler;
 
-import crud.javanauta.cadastro_usuario.infrastructure.exceptions.CpfJaCadastradoException;
-import crud.javanauta.cadastro_usuario.infrastructure.exceptions.PessoaFisicaExceptions;
+import crud.javanauta.cadastro_usuario.infrastructure.exceptions.BadRequestExceptions;
+import crud.javanauta.cadastro_usuario.infrastructure.exceptions.GlobalExceptions;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +13,22 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(PessoaFisicaExceptions.class)
-        public ResponseEntity<Map<String, Object>> handlerPessoaFisicaNaoEncontrada(PessoaFisicaExceptions ex){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    Map.of(
-                            "timestamp", LocalDateTime.now(),
-                            "status",404,
-                            "error", "Not Found",
-                            "message", ex.getMessage()
-                    )
-            );
-        }
-    @ExceptionHandler(CpfJaCadastradoException.class)
-    public ResponseEntity<Map<String, Object>> handleCpfDuplicado(CpfJaCadastradoException ex){
+    @ExceptionHandler(GlobalExceptions.class)
+    public ResponseEntity<Map<String, Object>> handlerPessoaFisicaNaoEncontrada(GlobalExceptions ex) {
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                Map.of(
+                        "timestamp", LocalDateTime.now(),
+                        "status", 404,
+                        "error", "Not Found",
+                        "message", ex.getMessage()
+                )
+        );
+    }
+
+
+    @ExceptionHandler(BadRequestExceptions.class)
+    public ResponseEntity<Map<String, Object>> handleCpfDuplicado(BadRequestExceptions ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 Map.of(
                         "timestamp", LocalDateTime.now(),
@@ -35,16 +38,7 @@ public class GlobalExceptionHandler {
                 )
         );
     }
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<Map<String, Object>> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                Map.of(
-                        "timestamp", LocalDateTime.now(),
-                        "status", 400,
-                        "error", "Bad Request",
-                        "message", "CPF já cadastrado no sistema"
-                )
-        );
-    }
 
 }
+
+

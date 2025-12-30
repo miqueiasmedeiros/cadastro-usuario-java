@@ -12,23 +12,27 @@ public class PessoaFisicaTest{
         PessoaFisica pf = new PessoaFisica();
         assertNotNull(pf);
     }
-//    @Test
-//    public void criarPessoaValidandoDadosObrigatorios() {
-//        InscricaoContribuinte inscricao = new InscricaoContribuinte();
-//        inscricao.setCodigo("ISENTO");
-//
-//        PessoaFisica pf = new PessoaFisica("Micke",
-//                "1234567891",
-//                "teste@teste.com",
-//                "123",
-//                "987654321",
-//                inscricao,
-//                RegimeTributario.SIMPLES_NACIONAL_MEI);
-//        assertNotNull(pf.getNome());
-//        assertNotNull(pf.getCpf());
-//        assertNotNull(pf.getEmail());
-//        assertNotNull(pf.getTelefone());
-//    }
+    @Test
+    public void criarPessoaValidandoDadosObrigatorios() {
+        InscricaoContribuinte inscricao = new InscricaoContribuinte();
+        inscricao.setCodigo("ISENTO");
+        Municipio municipio = new Municipio(); // Mocar Município
+        municipio.setCodigo("451234");
+        municipio.setNome("Seropédica");
+
+        PessoaFisica pf = new PessoaFisica("Micke",
+                "1234567891",
+                "teste@teste.com",
+                "123",
+                "987654321",
+                "ISENTO",
+                "SIMPLES_NACIONAL_MEI",
+                municipio);
+        assertNotNull(pf.getNome());
+        assertNotNull(pf.getCpf());
+        assertNotNull(pf.getEmail());
+        assertNotNull(pf.getTelefone());
+    }
 
     // TDD (Test Driving Development) - Desenvolvimento Orientado à Teste
 //    @Test

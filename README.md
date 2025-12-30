@@ -102,8 +102,12 @@ docker pull miqueias360/imagem-cadastro-user:0.0.4-RELEASE
 ```bash
 docker run -p 8080:8080 miqueias360/imagem-cadastro-user:0.0.4-RELEASE
 ```
+
+### Acesso à documentação da API
+
+- `http://localhost:8080/swagger-ui/index.html`
+
 Próximas melhorias no projeto...
 
-- Bug de CNPJ/CPF duplicados sem mensagem de erro sugestiva. 
-- Documentação Swagger
+
 

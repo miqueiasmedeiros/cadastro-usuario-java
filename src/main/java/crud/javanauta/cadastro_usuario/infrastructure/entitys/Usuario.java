@@ -27,6 +27,7 @@ public class Usuario {
 
     public Usuario(String login, String senha){
 
+        this.id = UUID.randomUUID().toString();
         this.login = login;
         this.senha = senha;
     }
