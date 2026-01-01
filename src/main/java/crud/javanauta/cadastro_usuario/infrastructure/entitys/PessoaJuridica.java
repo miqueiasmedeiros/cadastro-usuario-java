@@ -1,6 +1,7 @@
 package crud.javanauta.cadastro_usuario.infrastructure.entitys;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,7 @@ public class PessoaJuridica /*implements Conta*/{
     private String cnpj;
 
     @Column(nullable = false)
+    @Email(message = "Email inválido!")
     private String email;
 
      // Se habilitado NFSe | Transformar em Objeto

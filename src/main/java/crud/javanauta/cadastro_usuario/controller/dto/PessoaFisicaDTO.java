@@ -1,5 +1,6 @@
 package crud.javanauta.cadastro_usuario.controller.dto;
 
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

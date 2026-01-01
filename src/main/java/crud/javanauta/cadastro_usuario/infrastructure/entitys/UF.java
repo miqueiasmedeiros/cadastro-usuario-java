@@ -12,7 +12,7 @@ import lombok.Setter;
 public class UF {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique = true, length = 2)
     private String sigla;
     private String nome;
 

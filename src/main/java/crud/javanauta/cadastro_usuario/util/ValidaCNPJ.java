@@ -7,7 +7,6 @@ public class ValidaCNPJ {
     public static boolean isCNPJ(String CNPJ) {
 
         CNPJ = CNPJ.replaceAll("[.\\-/]", "");
-//        CNPJ = CNPJ.replaceAll("//.", "").replaceAll("//-","").replaceAll(".*\\\\/.*","");
 
 // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||

@@ -8,7 +8,7 @@ Validações
 - CPF
 - CNPJ
 - EMAIL
-- MUNICÍPIO
+- MUNICÍPIO - precisa da lista de municípios.
 
 LISTA DE MUNICÍPIOS
 CRIAR UM SCRIPT PARA INSERIR MUNICÍPIOS NO BANCO

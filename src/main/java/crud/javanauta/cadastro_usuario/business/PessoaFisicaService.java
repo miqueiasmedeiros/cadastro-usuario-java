@@ -8,6 +8,7 @@ import crud.javanauta.cadastro_usuario.infrastructure.exceptions.GlobalException
 import crud.javanauta.cadastro_usuario.infrastructure.repository.MunicipioRepository;
 import crud.javanauta.cadastro_usuario.infrastructure.repository.PessoaFisicaRepository;
 import crud.javanauta.cadastro_usuario.util.ValidaCPF;
+import crud.javanauta.cadastro_usuario.util.ValidaEmail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,10 @@ public class PessoaFisicaService {
 
         if (!ValidaCPF.isCPF(pf.getCpf())){
             throw new BadRequestExceptions ("CPF: " + pf.getCpf() + " inválido.");
+        }
+
+        if(!ValidaEmail.isValidEmail(pf.getEmail())){
+            throw new BadRequestExceptions("Email "+ pf.getEmail() + " inválido.");
         }
 
         if(pf.getInscricaoEstadual() != null &&
