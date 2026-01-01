@@ -7,6 +7,7 @@ import crud.javanauta.cadastro_usuario.infrastructure.exceptions.BadRequestExcep
 import crud.javanauta.cadastro_usuario.infrastructure.exceptions.GlobalExceptions;
 import crud.javanauta.cadastro_usuario.infrastructure.repository.MunicipioRepository;
 import crud.javanauta.cadastro_usuario.infrastructure.repository.PessoaFisicaRepository;
+import crud.javanauta.cadastro_usuario.util.ValidaCPF;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,10 @@ public class PessoaFisicaService {
             throw new BadRequestExceptions("CPF já cadastrado no sistema");
             // Criar uma Exception genérica para todas as validações
 
+        }
+
+        if (!ValidaCPF.isCPF(pf.getCpf())){
+            throw new BadRequestExceptions ("CPF: " + pf.getCpf() + " inválido.");
         }
 
         if(pf.getInscricaoEstadual() != null &&
