@@ -5,10 +5,8 @@ Exceptions Genéricas
 Teste Mocar Município
 
 Validações
-- CPF
-- CNPJ
-- EMAIL
-- MUNICÍPIO - precisa da lista de municípios.
+
+- MUNICÍPIO
 
 LISTA DE MUNICÍPIOS
-CRIAR UM SCRIPT PARA INSERIR MUNICÍPIOS NO BANCO
+- CRIAR UM SCRIPT PARA INSERIR MUNICÍPIOS NO BANCO

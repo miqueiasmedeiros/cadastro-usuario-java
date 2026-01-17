@@ -7,13 +7,19 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "municipio")
 public class Municipio{
 
-    @ManyToOne
-    @JoinColumn(name = "uf_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "uf_sigla",
+            referencedColumnName = "sigla",
+            nullable = false)
     private UF uf;
-    @Id()
-    @Column(name = "id")
+
+    @Id
+    @Column(name = "codigo")
     private String codigo;
+    @Column(nullable = false)
     private String nome;
 }

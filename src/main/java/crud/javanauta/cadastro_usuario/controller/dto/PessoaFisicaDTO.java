@@ -10,6 +10,7 @@ public class PessoaFisicaDTO {
 
         private String nome;
         private String cpf;
+        @Email(message = "Email anotado inválido!")
         private String email;
         private String senha;
         private String telefone;
