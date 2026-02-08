@@ -89,6 +89,16 @@ public class PessoaFisicaController {
     @GetMapping
     public ResponseEntity<List<PessoaFisica>> listarPessoasFisicas()
     {
-        return ResponseEntity.ok(pessoaFisicaRepository.findAll());
+        return ResponseEntity.ok(pessoaFisicaService.listarPessoasFisicas());
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<PessoaFisica> atualizarPessoaFisica(
+            @PathVariable String id,
+            @RequestBody PessoaFisicaDTO dto) {
+
+        return ResponseEntity.ok(
+                pessoaFisicaService.atualizarPessoaFisica(id, dto)
+        );
+    }
+
 }

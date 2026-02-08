@@ -1,17 +1,22 @@
 package crud.javanauta.cadastro_usuario.business;
 
 import crud.javanauta.cadastro_usuario.controller.dto.PessoaFisicaDTO;
+import crud.javanauta.cadastro_usuario.infrastructure.entitys.InscricaoContribuinte;
 import crud.javanauta.cadastro_usuario.infrastructure.entitys.Municipio;
 import crud.javanauta.cadastro_usuario.infrastructure.entitys.PessoaFisica;
+import crud.javanauta.cadastro_usuario.infrastructure.entitys.RegimeTributario;
 import crud.javanauta.cadastro_usuario.infrastructure.exceptions.BadRequestExceptions;
 import crud.javanauta.cadastro_usuario.infrastructure.exceptions.GlobalExceptions;
 import crud.javanauta.cadastro_usuario.infrastructure.repository.MunicipioRepository;
 import crud.javanauta.cadastro_usuario.infrastructure.repository.PessoaFisicaRepository;
 import crud.javanauta.cadastro_usuario.util.ValidaCPF;
 import crud.javanauta.cadastro_usuario.util.ValidaEmail;
+import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -80,6 +85,56 @@ public class PessoaFisicaService {
             throw new GlobalExceptions("Cadastro Inexistente!");
         }
         pessoaFisicaRepository.deleteById(id);
+    }
+
+    public List<PessoaFisica> listarPessoasFisicas(){
+        return pessoaFisicaRepository.findAll();
+    }
+    public PessoaFisica atualizarPessoaFisica(String id, PessoaFisicaDTO dto) {
+
+        PessoaFisica pessoa = buscarPessoaFisicaPorId(id);
+
+        // ===== Validações =====
+        if(dto.getEmail() != null && !ValidaEmail.isValidEmail(dto.getEmail())){
+            throw new BadRequestExceptions("Email inválido.");
+        }
+
+        // ===== Atualização segura =====
+
+        if(dto.getNome() != null)
+            pessoa.setNome(dto.getNome());
+
+        if(dto.getEmail() != null)
+            pessoa.setEmail(dto.getEmail());
+
+        if(dto.getTelefone() != null)
+            pessoa.setTelefone(dto.getTelefone());
+
+        if(dto.getRegimeTributario() != null)
+            pessoa.setRegimeTributario(
+                    RegimeTributario.valueOf(dto.getRegimeTributario())
+            );
+
+        // ===== Municipio =====
+        if(dto.getMunicipio() != null){
+            Municipio municipio = municipioRepository.findById(dto.getMunicipio())
+                    .orElseThrow(() -> new GlobalExceptions("Município não encontrado"));
+            pessoa.setMunicipio(municipio);
+        }
+
+        // ===== Inscrição estadual =====
+        if(dto.getInscricaoEstadual() != null){
+            pessoa.setInscricaoEstadual(
+                    new InscricaoContribuinte(dto.getInscricaoEstadual())
+            );
+        }
+
+        // ===== Senha usuário =====
+        if(dto.getSenha() != null){
+            pessoa.getUsuario().setSenha(dto.getSenha());
+        }
+
+        return pessoaFisicaRepository.saveAndFlush(pessoa);
     }
 
 }
