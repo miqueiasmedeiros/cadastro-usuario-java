@@ -1,28 +1,31 @@
 # -----------------------------
-# Etapa 1 — Build da aplicação
+# Etapa 1 — Build
 # -----------------------------
 FROM eclipse-temurin:21-jdk AS build
 
-LABEL maintainer="miqueiascompany@gmail.com"
 WORKDIR /app
-
-
 
 COPY .mvn/ .mvn
 COPY mvnw .
 COPY pom.xml .
 COPY src ./src
 
-# Baixa dependências e empacota
-RUN ./mvnw clean package
+RUN ./mvnw clean package -DskipTests
 
-#Etapa 2 - Runtime (JRE)
+# -----------------------------
+# Etapa 2 — Runtime
+# -----------------------------
 FROM eclipse-temurin:21-jre
+
 WORKDIR /app
 
-# Copia somente o JAR gerado no build
+RUN apt-get update && apt-get install -y netcat-openbsd
+
 COPY --from=build /app/target/*jar cadastro-docker.jar
+COPY start.sh start.sh
+
+RUN chmod +x start.sh
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "cadastro-docker.jar"]
+ENTRYPOINT ["./start.sh"]

@@ -5,14 +5,27 @@ services:
     image: postgres:16
     container_name: postgres-cadastro-usuario
     restart: always
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_DB: cadastro_usuario
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    container_name: cadastro-usuario-app
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cadastro_usuario
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
 
 volumes:
   postgres_data:
