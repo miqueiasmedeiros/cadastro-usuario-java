@@ -3,6 +3,8 @@ package crud.javanauta.cadastro_usuario.infrastructure.entitys;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import crud.javanauta.cadastro_usuario.controller.dto.PessoaFisicaDTO;
 import org.junit.jupiter.api.Test;
 
 public class PessoaFisicaTest{
@@ -21,7 +23,7 @@ public class PessoaFisicaTest{
         municipio.setNome("Seropédica");
 
         PessoaFisica pf = new PessoaFisica("Micke",
-                "1234567891",
+                "1234567890",
                 "teste@teste.com",
                 "123",
                 "987654321",

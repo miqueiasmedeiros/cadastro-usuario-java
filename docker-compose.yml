@@ -16,7 +16,7 @@ services:
 
   app:
     build: .
-    container_name: cadastro-usuario-app
+    container_name: postgres-docker
     restart: always
     depends_on:
       - postgres

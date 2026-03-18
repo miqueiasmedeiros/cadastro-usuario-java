@@ -17,15 +17,11 @@ RUN ./mvnw clean package -DskipTests
 # -----------------------------
 FROM eclipse-temurin:21-jre
 
+LABEL maintainer="miqueiascompany@gmail.com"
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y netcat-openbsd
-
 COPY --from=build /app/target/*jar cadastro-docker.jar
-COPY start.sh start.sh
-
-RUN chmod +x start.sh
 
 EXPOSE 8080
 
-ENTRYPOINT ["./start.sh"]
+ENTRYPOINT ["java", "-jar", "cadastro-docker.jar"]
